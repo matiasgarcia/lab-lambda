@@ -1,0 +1,20 @@
+{
+  "name": "localtstack",
+  "version": "1.0.0",
+  "description": "Local AWS setup with LocalStack, SNS and SQS",
+  "scripts": {
+    "start": "npm run start:infra",
+    "start:infra": "npm run docker:up && sleep 10 && npm run terraform:init && npm run terraform:apply",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down -v",
+    "docker:logs": "docker-compose logs -f",
+    "terraform:init": "docker-compose run --rm terraform init",
+    "terraform:apply": "docker-compose run --rm terraform apply --auto-approve",
+    "terraform:destroy": "docker-compose run --rm terraform destroy --auto-approve",
+    "stop": "npm run docker:down",
+    "clean": "npm run stop && rm -rf publisher/node_modules consumer/node_modules node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

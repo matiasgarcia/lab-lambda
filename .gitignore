@@ -1,0 +1,6 @@
+.terraform/
+node_modules/
+.terraform*
+terraform*
+volume/
+lambda_function.zip
